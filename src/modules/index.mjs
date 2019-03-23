@@ -3,6 +3,12 @@ import fs from "fs";
 
 import chalk from "chalk";
 
+import SmsMessageModule from "./SmsMessage";
+import SmsProviderModule from "./SmsProvider";
+
+import LogModule from "@prisma-cms/log-module";
+import UserModule from "@prisma-cms/user-module";
+
 import PrismaModule from "@prisma-cms/prisma-module";
 
 import MergeSchema from 'merge-graphql-schemas';
@@ -17,8 +23,6 @@ const { createWriteStream, unlinkSync } = fs;
 
 const { fileLoader, mergeTypes } = MergeSchema
 
-
-
 class Module extends PrismaModule {
 
 
@@ -28,6 +32,13 @@ class Module extends PrismaModule {
 
     Object.assign(this, {
     });
+
+    this.mergeModules([
+      LogModule,
+      UserModule,
+      SmsMessageModule,
+      SmsProviderModule,
+    ]);
 
   }
 
@@ -81,6 +92,7 @@ class Module extends PrismaModule {
 
     const resolvers = super.getResolvers();
 
+    // console.log("getResolvers resolvers", resolvers);
 
     Object.assign(resolvers.Query, this.Query);
 
@@ -90,6 +102,16 @@ class Module extends PrismaModule {
 
 
     Object.assign(resolvers, {
+      SmsMessage: {
+        from: () => "",
+        text: () => "",
+        recipients: () => [],
+        // Provider: () => null,
+        CreatedBy: () => null,
+      },
+      SmsProvider: {
+        credentials: () => null,
+      },
     });
 
     return resolvers;

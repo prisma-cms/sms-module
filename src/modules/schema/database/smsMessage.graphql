@@ -1,0 +1,13 @@
+
+type SmsMessage {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  from: String!
+  text: String!
+  recipients: [String!]!
+  Provider: SmsProvider!
+  deletOnSend: Boolean @default(value: true)
+  CreatedBy: User @relation(name: "LetsadsSmsMessageCreatedBy")
+  Status: LetsadsSmsMessageStatus @relation(name: "LetsadsSmsMessageStatusSmsMessage", onDelete: CASCADE)
+}

@@ -1,3 +1,8 @@
+1.2.0
+===============================
+- Public release
+- Added sending sms via https://letsads.com/
+
 1.1.5
 ===============================
 - Upgraded nodemon

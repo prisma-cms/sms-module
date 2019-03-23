@@ -1,0 +1,41 @@
+
+enum LetsadsSmsMessageStatusEnum{
+  Complete
+  Error
+}
+
+enum LetsadsSmsMessageStatusErrorCodeEnum{
+  NO_DATA
+  WRONG_DATA_FORMAT
+  REQUEST_FORMAT
+  AUTH_DATA
+  API_DISABLED
+  USER_NOT_MODERATED
+  INCORRECT_FROM
+  INVALID_FROM
+  MESSAGE_TOO_LONG
+  NO_MESSAGE
+  MAX_MESSAGES_COUNT
+  NOT_ENOUGH_MONEY
+  UNKNOWN_ERROR
+}
+
+type LetsadsSmsMessageStatus{
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: LetsadsSmsMessageStatusEnum
+  description: String
+  errorCode: LetsadsSmsMessageStatusErrorCodeEnum
+  SmsMessage: SmsMessage! @relation(name: "LetsadsSmsMessageStatusSmsMessage")
+  Items: [LetsadsSmsMessageStatusItem!]! @relation(name: "LetsadsSmsMessageStatusSmsItems", onDelete: CASCADE)
+}
+
+
+
+type LetsadsSmsMessageStatusItem{
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sms_id: Int! @unique
+}

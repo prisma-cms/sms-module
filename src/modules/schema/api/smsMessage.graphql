@@ -1,0 +1,9 @@
+
+
+type SmsMessageResponse {
+  success: Boolean!
+  message: String
+  errors: [Error!]!
+  data: SmsMessage
+}
+ 

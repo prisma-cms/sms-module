@@ -1,0 +1,28 @@
+
+type Error {
+  key: String!
+  message: String!
+}
+
+
+type Mutation {
+ 
+  createSmsMessageProcessor(
+    data: SmsMessageCreateInput!
+  ): SmsMessageResponse!
+ 
+  updateSmsMessageProcessor(
+    data: SmsMessageUpdateInput!
+    where: SmsMessageWhereUniqueInput!
+  ): SmsMessageResponse!
+ 
+  createSmsProviderProcessor(
+    data: SmsProviderCreateInput!
+  ): SmsProviderResponse!
+ 
+  updateSmsProviderProcessor(
+    data: SmsProviderUpdateInput!
+    where: SmsProviderWhereUniqueInput!
+  ): SmsProviderResponse!
+
+}

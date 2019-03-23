@@ -1,0 +1,7 @@
+
+type SmsProvider {
+  id: ID! @unique
+  name: String! @unique
+  credentials: Json
+  CreatedBy: User
+}
