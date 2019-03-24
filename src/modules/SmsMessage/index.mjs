@@ -13,7 +13,7 @@ const {
 } = xml2js;
 
 
-class SmsMessageProcessor extends PrismaProcessor {
+export class SmsMessageProcessor extends PrismaProcessor {
 
 
   constructor(props) {
@@ -435,7 +435,7 @@ class SmsMessageProcessor extends PrismaProcessor {
 
 
 
-class Module extends PrismaModule {
+export class SmsMessageModule extends PrismaModule {
 
 
   constructor(props = {}) {
@@ -584,4 +584,4 @@ class Module extends PrismaModule {
 }
 
 
-export default Module;
+export default SmsMessageModule;

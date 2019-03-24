@@ -1,7 +1,7 @@
 {
   "name": "@prisma-cms/sms-module",
   "description": "SMS module for @prisma-cms",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "src/",
   "files": [
     "src"

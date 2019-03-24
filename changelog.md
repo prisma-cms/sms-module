@@ -1,3 +1,8 @@
+1.2.4
+===============================
+- export SmsMessageModule,
+- export SmsMessageProcessor,
+
 1.2.3
 ===============================
 - Fix remove  @prisma-cms/user-module
