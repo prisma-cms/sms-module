@@ -22,7 +22,7 @@ class SmsMessageProcessor extends PrismaProcessor {
 
     this.objectType = "SmsMessage";
 
-    this.private = true;
+    this.private = false;
 
     this.maxLength = 100;
 
@@ -30,6 +30,23 @@ class SmsMessageProcessor extends PrismaProcessor {
 
 
   async create(objectType, args, info) {
+
+
+    const {
+      id: currentUserId,
+      sudo,
+    } = await this.getUser() || {};
+
+
+    if (sudo !== true) {
+      return this.addError("Access denied");
+    }
+
+    return this.createAndSendSms(objectType, args, info);
+  }
+
+
+  async createAndSendSms(objectType, args, info) {
 
     const {
       maxLength,
@@ -41,7 +58,8 @@ class SmsMessageProcessor extends PrismaProcessor {
 
     const {
       id: currentUserId,
-    } = await this.getUser(true) || {};
+    } = await this.getUser() || {};
+
 
     let {
       data: {
@@ -71,7 +89,6 @@ class SmsMessageProcessor extends PrismaProcessor {
     }
 
 
-
     if (!text) {
       this.addFieldError("text", "Не заполнено сообщение");
     }
@@ -80,13 +97,15 @@ class SmsMessageProcessor extends PrismaProcessor {
     }
 
 
-    Object.assign(data, {
-      CreatedBy: {
-        connect: {
-          id: currentUserId,
+    if (currentUserId) {
+      Object.assign(data, {
+        CreatedBy: {
+          connect: {
+            id: currentUserId,
+          },
         },
-      },
-    });
+      });
+    }
 
 
     args = Object.assign(args, {
@@ -132,6 +151,7 @@ class SmsMessageProcessor extends PrismaProcessor {
     }
 
     return sms;
+
   }
 
 
@@ -450,23 +470,23 @@ class Module extends PrismaModule {
 
     return {
       Query: {
-        smsMessage: this.smsMessage.bind(this),
+        // smsMessage: this.smsMessage.bind(this),
         // smsMessages: this.smsMessages.bind(this),
-        smsMessagesConnection: this.smsMessagesConnection.bind(this),
+        // smsMessagesConnection: this.smsMessagesConnection.bind(this),
       },
       Mutation: {
         createSmsMessageProcessor: this.createSmsMessageProcessor.bind(this),
-        updateSmsMessageProcessor: this.updateSmsMessageProcessor.bind(this),
-        deleteSmsMessage: this.deleteSmsMessage.bind(this),
-        deleteManySmsMessages: this.deleteManySmsMessages.bind(this),
+        // updateSmsMessageProcessor: this.updateSmsMessageProcessor.bind(this),
+        // deleteSmsMessage: this.deleteSmsMessage.bind(this),
+        // deleteManySmsMessages: this.deleteManySmsMessages.bind(this),
       },
       Subscription: {
-        smsMessage: {
-          subscribe: async (parent, args, ctx, info) => {
+        // smsMessage: {
+        //   subscribe: async (parent, args, ctx, info) => {
 
-            return ctx.db.subscription.smsMessage(args, info)
-          },
-        },
+        //     return ctx.db.subscription.smsMessage(args, info)
+        //   },
+        // },
       },
       SmsMessageResponse: this.SmsMessageResponse,
     }

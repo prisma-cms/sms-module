@@ -33,7 +33,13 @@ class SmsProviderProcessor extends PrismaProcessor {
 
     const {
       id: currentUserId,
+      sudo,
     } = await this.getUser(true);
+
+
+    if (sudo !== true) {
+      return this.addError("Access denied");
+    }
 
 
     Object.assign(data, {
@@ -97,23 +103,23 @@ class Module extends PrismaModule {
 
     return {
       Query: {
-        smsProvider: this.smsProvider.bind(this),
-        smsProviders: this.smsProviders.bind(this),
-        smsProvidersConnection: this.smsProvidersConnection.bind(this),
+        // smsProvider: this.smsProvider.bind(this),
+        // smsProviders: this.smsProviders.bind(this),
+        // smsProvidersConnection: this.smsProvidersConnection.bind(this),
       },
       Mutation: {
         createSmsProviderProcessor: this.createSmsProviderProcessor.bind(this),
         updateSmsProviderProcessor: this.updateSmsProviderProcessor.bind(this),
-        deleteSmsProvider: this.deleteSmsProvider.bind(this),
-        deleteManySmsProviders: this.deleteManySmsProviders.bind(this),
+        // deleteSmsProvider: this.deleteSmsProvider.bind(this),
+        // deleteManySmsProviders: this.deleteManySmsProviders.bind(this),
       },
       Subscription: {
-        smsProvider: {
-          subscribe: async (parent, args, ctx, info) => {
+        // smsProvider: {
+        //   subscribe: async (parent, args, ctx, info) => {
 
-            return ctx.db.subscription.smsProvider(args, info)
-          },
-        },
+        //     return ctx.db.subscription.smsProvider(args, info)
+        //   },
+        // },
       },
       SmsProviderResponse: this.SmsProviderResponse,
     }
