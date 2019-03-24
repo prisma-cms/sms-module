@@ -1,3 +1,8 @@
+1.2.3
+===============================
+- Fix remove  @prisma-cms/user-module
+- Fix remove  @prisma-cms/log-module
+
 1.2.2
 ===============================
 - Fix dependencies

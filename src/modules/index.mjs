@@ -6,8 +6,8 @@ import chalk from "chalk";
 import SmsMessageModule from "./SmsMessage";
 import SmsProviderModule from "./SmsProvider";
 
-import LogModule from "@prisma-cms/log-module";
-import UserModule from "@prisma-cms/user-module";
+// import LogModule from "@prisma-cms/log-module";
+// import UserModule from "@prisma-cms/user-module";
 
 import PrismaModule from "@prisma-cms/prisma-module";
 
@@ -34,8 +34,8 @@ class Module extends PrismaModule {
     });
 
     this.mergeModules([
-      LogModule,
-      UserModule,
+      // LogModule,
+      // UserModule,
       SmsMessageModule,
       SmsProviderModule,
     ]);

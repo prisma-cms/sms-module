@@ -1,7 +1,7 @@
 {
   "name": "@prisma-cms/sms-module",
   "description": "SMS module for @prisma-cms",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "src/",
   "files": [
     "src"
@@ -21,8 +21,6 @@
   },
   "devDependencies": {
     "@prisma-cms/server": "latest",
-    "@prisma-cms/user-module": "latest",
-    "@prisma-cms/log-module": "latest",
     "expect": "^23.6.0",
     "graphql": "*",
     "mocha": "^5.2.0",
