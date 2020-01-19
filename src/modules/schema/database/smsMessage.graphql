@@ -1,11 +1,11 @@
 
 type SmsMessage {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  id: ID! @unique @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   from: String!
   text: String!
-  recipients: [String!]!
+  recipients: [String!]! @scalarList(strategy: RELATION)
   Provider: SmsProvider!
   deletOnSend: Boolean @default(value: true)
   CreatedBy: User @relation(name: "LetsadsSmsMessageCreatedBy")

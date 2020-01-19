@@ -1,6 +1,8 @@
 
 type SmsProvider {
-  id: ID! @unique
+  id: ID! @unique @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   name: String! @unique
   credentials: Json
   CreatedBy: User
