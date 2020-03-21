@@ -9,5 +9,5 @@ type SmsMessage {
   Provider: SmsProvider!
   deletOnSend: Boolean @default(value: true)
   CreatedBy: User @relation(name: "LetsadsSmsMessageCreatedBy")
-  Status: LetsadsSmsMessageStatus @relation(name: "LetsadsSmsMessageStatusSmsMessage", onDelete: CASCADE)
+  Status: LetsadsSmsMessageStatus @relation(name: "LetsadsSmsMessageStatusSmsMessage", link: INLINE)
 }

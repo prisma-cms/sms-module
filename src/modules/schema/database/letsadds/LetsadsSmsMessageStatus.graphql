@@ -6,7 +6,7 @@ type LetsadsSmsMessageStatus{
   name: LetsadsSmsMessageStatusEnum @scalar(strategy: RELATION)
   description: String
   errorCode: LetsadsSmsMessageStatusErrorCodeEnum
-  SmsMessage: SmsMessage! @relation(name: "LetsadsSmsMessageStatusSmsMessage" link: INLINE)
+  SmsMessage: SmsMessage! @relation(name: "LetsadsSmsMessageStatusSmsMessage")
   Items: [LetsadsSmsMessageStatusItem!]! @relation(name: "LetsadsSmsMessageStatusSmsItems", onDelete: CASCADE)
 }
 
